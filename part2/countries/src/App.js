@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import Country from './components/Country'
 import Countries from "./components/Countries"
 import axios from 'axios'
 
@@ -15,24 +14,13 @@ function App() {
       .then((response) => setCountries(response.data))
   }, [])
 
-  // Handlers
+  // Handlers ---> Binding The Input with State
   const handleChange = (event) => setValueCountry(event.target.value)
 
-  // Filters & Functions
+  const handleClick = (country) => setValueCountry(country.name.common)
+
+  // Filters & Functions ---> query = interacts with the input value to retrieve the list of countries that match with the search criteria.
   const query = countries.filter((country) => country.name.common.toLowerCase().includes(valueCountry.toLowerCase()))
-  
-  const countriesToShow = (query) => {
-    if (query.length === 1) {
-      return <Country country={ query[0] } isDetailed={ true } />
-    }
-
-    if (query.length <= 10) {
-      return <Countries countries={ query } />
-    }
-
-    return 'Too many matches, specify another filter'
-
-  }
 
   return (
     <div>
@@ -40,10 +28,7 @@ function App() {
         find countries <input onChange={ handleChange } value={ valueCountry } />
       </div>
       <div>
-        { countriesToShow(query) }
-      </div>
-      <div>
-
+        <Countries countries={ query } handleClick={ handleClick } />
       </div>
     </div>
   )
