@@ -4,11 +4,13 @@ function PersonForm({ handleSubmit, handleNameChange, newName, handleNumberChang
     return (
         <form onSubmit={ handleSubmit }>
             <div>
-                name: <input onChange={ handleNameChange } value={ newName } />
+                Name: <input onChange={ handleNameChange } value={ newName } />
             </div>
+            <br />
             <div>
-                number: <input onChange={ handleNumberChange } value={ newNumber } />
+                Number: <input onChange={ handleNumberChange } value={ newNumber } />
             </div>
+            <br />
             <div>
                 <button type="submit">add</button>
             </div>
